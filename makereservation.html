@@ -47,12 +47,32 @@
         </div>
         <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
     </form>
+
+    <footer class="footer mt-4">
+        <div class="container">
+            <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
+                    Wait List</a>
+            </p>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        $("#submit-btn").on("click", function (event) {
+            event.preventDefault();
+
+            var newReservation = {
+                name: $("#InputName").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#exampleInputEmail1").val().trim(),
+                uniqueid: $("#id").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/tables", newReservation)
+                .then(function (data) {
+                    alert("Your reservation has been made.");
+                });
+        });
+    </script>
 </body>
-<footer class="footer mt-4">
-    <div class="container">
-        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API
-                Wait List</a>
-        </p>
-    </div>
-</footer>
+
 </html>

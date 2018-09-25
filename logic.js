@@ -74,35 +74,15 @@ app.post("/api/tables", function (request, response) {
     var newReservation = request.body;
 
     console.log(newReservation);
-
-    tables.push(newReservation);
-
-    waitlist.push(newReservation);
+    if (tables.length < 5) {
+        tables.push(newReservation);
+    } else {
+        waitlist.push(newReservation);
+    };
 
     // ????
     response.json(newReservation);
 });
-
-$("#submit-btn").on("click", function (event) {
-    event.preventDefault();
-
-    var newReservation = {
-        name: $("#InputName").val().trim(),
-        phone: $("#phone").val().trim(),
-        email: $("#exampleInputEmail1").val().trim(),
-        uniqueid: $("#id").val().trim()
-    };
-
-    // Question: What does this code do??
-    $.post("/api/tables", newReservation)
-        .then(function (data) {
-            alert("Your reservation has been made.");
-        });
-
-
-});
-
-
 
 
 // Starts the server to begin listening
