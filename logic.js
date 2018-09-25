@@ -83,6 +83,25 @@ app.post("/api/tables", function (request, response) {
     response.json(newReservation);
 });
 
+$("#submit-btn").on("click", function (event) {
+    event.preventDefault();
+
+    var newReservation = {
+        name: $("#InputName").val().trim(),
+        phone: $("#phone").val().trim(),
+        email: $("#exampleInputEmail1").val().trim(),
+        uniqueid: $("#id").val().trim()
+    };
+
+    // Question: What does this code do??
+    $.post("/api/tables", newReservation)
+        .then(function (data) {
+            alert("Your reservation has been made.");
+        });
+
+
+});
+
 
 
 
